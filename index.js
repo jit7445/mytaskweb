@@ -1,5 +1,5 @@
-const newtaskInput = document.getElementById('newtask');
-const tasklist = document.getElementById('tasklist');
+const newTaskInput = document.getElementById('newTask');
+const taskList = document.getElementById('taskList');
 
 // Load tasks from local storage when the page loads
 loadTasks();
@@ -20,7 +20,7 @@ function addTask() {
   `;
 
   // Add it to the task list
-  tasklist.appendChild(listItem);
+  taskList.appendChild(listItem);
 
   // Clear the input field
   newTaskInput.value = '';
@@ -31,12 +31,12 @@ function addTask() {
 
 function deleteTask(button) {
   const listItem = button.parentElement;
-  tasklist.removeChild(listItem);
+  taskList.removeChild(listItem);
   storeTasks(); // Update local storage after deletion
 }
 
 function storeTasks() {
-  const tasks = Array.from(tasklist.children)
+  const tasks = Array.from(taskList.children)
     .map(task => task.querySelector('span').textContent);
   localStorage.setItem('tasks', JSON.stringify(tasks));
 }
@@ -51,7 +51,7 @@ function loadTasks() {
         <span>${task}</span>
         <button class="delete-button" onclick="deleteTask(this)">Delete</button>
       `;
-      tasklist.appendChild(listItem);
+      taskList.appendChild(listItem);
     });
   }
 }
